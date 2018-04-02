@@ -44,7 +44,7 @@ Media Quereies:
 /***** GENERAL STYLES *****/
 html {
   background-color: #FEF4E6;
-  background-image: url('http://mykegablemusic.com/wp-content/themes/myke-gable-music/images/myke-gable-background-image.png');
+  background-image: url('./images/myke-gable-background-image.png');
   background-repeat: no-repeat;
   background-position: -170px 30px;
   background-size: auto 900px;
@@ -56,7 +56,6 @@ body {
   line-height: 150%;
   font-family: Avenir, Arial, Helvetica, sans-serif;
   color: #2C1A16;
-  background: rgba(255,255,255,0.95) url('http://mykegablemusic.com/wp-content/themes/myke-gable-music/images/bg-12col.png') repeat-y;  
   background: rgba(255,255,255,0.8);
 }
 header, nav, #middle, footer {
@@ -573,4 +572,8 @@ footer a {
   color: #fff;
   border: none;
   border-radius: 2px;
+}
+.contact-page input:focus,
+.contact-page textarea:focus {
+  outline-color: rgba(248, 202, 132, 0.5);
 }

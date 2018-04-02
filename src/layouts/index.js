@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import './fonts/CantoriaMTStd-Bold.otf';
 import './fonts/CantoriaMTStd.otf';
 import './fonts/AvenirLTStd-Roman.otf';
+import './images/myke-gable-background-image.png';
 import './index.css';
 import favicon from './images/myke-gable-favicon.png';
 
