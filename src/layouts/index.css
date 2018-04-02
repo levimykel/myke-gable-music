@@ -547,6 +547,9 @@ footer a {
 .contact-page .success-message {
   margin: 20px 0;
 }
+.contact-page form .field:last-of-type {
+  margin-bottom: 10px;
+}
 .contact-page label {
   display: block;
 }
@@ -560,8 +563,11 @@ footer a {
   padding: 10px;
   margin-bottom: 0.5em;
 }
+.contact-page textarea {
+  margin-bottom: 0;
+}
 .contact-page input[type="submit"] {
-  margin-bottom: 1em;
+  margin: 15px 0;
   padding: 10px 20px;
   background: #2C1A16;
   color: #fff;

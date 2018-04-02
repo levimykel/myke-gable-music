@@ -12,7 +12,15 @@ const ContactPage = () => (
     />
     <article id="content">
       <h1>Contact</h1>
-      <form name="Contact" method="post" action="/contact/success" data-netlify="true">
+      <p>Feel free to use this form to contact me with questions or inquire about hiring me to play an event.</p>
+      <form name="Contact" method="post" action="/contact/success" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="Contact" />
+        <p style={{display:'none'}}>
+          <label>
+            Don’t fill this out if you're human: 
+            <input name="bot-field"/>
+          </label>
+        </p>
         <div className="field">
           <label htmlFor="name">Name</label>
           <input type="text" name="name" id="name" />
@@ -25,7 +33,6 @@ const ContactPage = () => (
           <label htmlFor="message">Message</label>
           <textarea name="message" id="message" rows="6"></textarea>
         </div>
-        <div data-netlify-recaptcha></div>
         <input type="submit" value="Send Message"/>
       </form>
     </article>
