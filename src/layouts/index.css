@@ -1,0 +1,570 @@
+
+/***** FONTS *****/
+@font-face {
+  font-family: "Cantoria Bold";
+  src: url('./fonts/CantoriaMTStd-Bold.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cantoria";
+  src: url('./fonts/CantoriaMTStd.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url('./fonts/AvenirLTStd-Roman.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/***** NOTES *****/
+/*
+Colors:
+Martin Tan: #F8CA84
+Martin Tan Light: #FEF4E6
+
+Porch Red: #692622
+Porch Red Light: #87514E
+
+Rocking Chair Brown: #2C1A16
+
+
+Media Quereies:
+@media all and (max-width: 800px) {
+}
+*/
+
+
+
+/***** GENERAL STYLES *****/
+html {
+  background-color: #FEF4E6;
+  background-image: url('http://mykegablemusic.com/wp-content/themes/myke-gable-music/images/myke-gable-background-image.png');
+  background-repeat: no-repeat;
+  background-position: -170px 30px;
+  background-size: auto 900px;
+}
+body {
+  max-width: 980px;
+  margin: 0 auto 2.5em;
+  font-size: 100%;
+  line-height: 150%;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  color: #2C1A16;
+  background: rgba(255,255,255,0.95) url('http://mykegablemusic.com/wp-content/themes/myke-gable-music/images/bg-12col.png') repeat-y;  
+  background: rgba(255,255,255,0.8);
+}
+header, nav, #middle, footer {
+  max-width: 940px;
+  margin: 0;
+  padding: 20px;
+}
+a img {
+  border:none;
+}
+@media all and (max-width: 980px) {
+  html {
+    /* background-position: -170px 180px;*/
+    background-position: -112px 180px;
+  }
+  body {
+    margin: 0 auto;
+    background: rgba(255,255,255,0.88);
+  }
+}
+@media all and (max-width: 350px) {
+  header, nav, #middle, footer {
+    padding: 20px 10px;
+  }
+}
+
+
+/***** TYPOGRAPHY *****/
+/*Calculate ems using 1em = 16px */
+p {
+  margin: 0.75em 0;
+}
+a {
+  text-decoration: none;
+}
+h1, h2, h3 {
+  margin: 0;
+  font-family: "Cantoria Bold", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+h1 {
+  font-size: 2em; /* 32px */
+  line-height: 1em; /* 32px */
+}
+h2 {
+  margin-bottom: 12px;
+  font-size: 1.625em; /*26px */
+  line-height: 1em;
+  padding-top: 0.3077em;
+}
+h2 a {
+  color: #2C1A16;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1em;
+  padding-top: 0.3077em;
+  font-family: "Cantoria", "Cantoria Bold", Arial, Helvetica, sans-serif;
+}
+
+#content .list-title {
+  margin: 0;
+  line-height: 1.125em;
+}
+#content ul, ol {
+  padding-left: 1.375em;
+  font-size: 1em;
+  line-height: 1.3125em;
+  margin: 0 0 0.875em 1em;
+}
+#content ol ol, #content ul ul, #content ol ul, #content ul ol {
+  margin-bottom: 0;
+}
+
+
+
+/***** HEADER STYLES *****/
+header {
+  background: #2C1A16;
+}
+
+header .logo {
+  max-width: 220px;
+}
+
+
+
+/***** NAVIGATION STYLES *****/
+nav {
+  background: #692622;
+  border-top: 5px solid #F8CA84;
+  border-bottom: 5px solid #F8CA84;
+  color: white;
+  font-size: 20px;
+  padding: 0 20px;
+  min-height: 50px;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin:0;
+}
+nav > ul {
+  background: #692622;
+}
+nav h4 {
+  display: none;
+  margin: 0;
+  color: #fff;
+  font-weight: normal;
+}
+nav h4 a {
+  height: 50px;
+  line-height: 50px; 
+  color: #fff;
+  font-size: 20px;
+}
+nav h4 .navToggleIcon {
+  float: right;
+  top: 10px;
+}
+nav li {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+}
+nav li a {
+  display: block;
+  color: #fff;
+  padding: 0 25px;
+}
+nav li:hover > a {
+  color: #FBDFB5;
+}
+nav li ul {
+  position: absolute;
+  top: 99.9%;
+  left: 0;
+  display: none;
+  z-index: 100;
+}
+nav li:hover ul {
+  display: block;
+}
+nav li li {
+  display: block;
+  background: #692622;
+  border-bottom: 5px solid #F8CA84;
+}
+nav li li:first-child {
+  border-top: 5px solid #F8CA84;
+}
+/*nav ul span {
+  font-family: "Music Notes", cursive;
+  font-size: 30px;
+  height: 50px;
+  line-height: 50px;
+}*/
+nav ul img {
+  margin-bottom: -4px;
+}
+nav ul ul img {
+  display: none;
+}
+nav a.current-menu-item,
+nav a.current-page-ancestor {
+  color: #F8CA84;
+}
+
+@media all and (max-width: 800px) {
+  nav h4 {
+    display: block;
+  }
+  nav ul, nav ul img {
+    display: none;
+  }
+  nav ul li, nav li ul {
+    position: static;
+    display: block;
+    height: auto;
+    min-height: 50px;
+  }
+  nav li, nav li li {
+    border-top: none;
+    border-bottom: 1px solid #F8CA84;
+    padding: 0 25px;
+  }
+  nav ul li:last-of-type {
+    border-bottom: none;
+  }
+  nav ul li:first-of-type {
+    border-top: 1px solid #F8CA84;
+  }
+  nav li a {
+    padding: 0;
+  }
+}
+
+
+
+
+/***** MIDDLE STYLES *****/
+#middle {
+  overflow: auto;
+}
+
+#middle img {
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 5px solid #2C1A16;
+  margin: 0;
+}
+
+#content {
+  max-width: 65.9574%; /* 620px/940px */
+  float: left;
+}
+
+#sidebar {
+  max-width: 31.9149%; /* 300px/940px */
+  float: right;
+  padding: 44px 0 10px; 
+}
+
+@media all and (max-width: 800px) {
+  #content, #sidebar {
+    float: none;
+    max-width: 100%;
+  }
+
+  #sidebar {
+    padding: 30px 0 10px;
+  }
+}
+
+
+.widget {
+  margin-bottom: 30px;
+}
+.widget:last-child {
+  margin-bottom: 0;
+}
+.widgetHeader {
+  background: #692622;
+  min-height: 20px;
+  padding: 10px;
+  line-height: 20px;
+  color: #fff;
+  border-bottom: 5px solid #F8CA84;
+}
+.widgetHeader a {
+  color: #fff;
+}
+.widgetContent {
+  background: #f0e9e8;
+  padding: 10px;
+  overflow: auto;
+}
+
+@media all and (max-width: 800px) {
+  .widgetContent {
+    background: rgba(240,233,232,1);
+  }
+}
+
+
+.widgetContent ul {
+  margin: 0 0 0.75em;
+  padding: 0 0 0 18px;
+}
+ul.localNav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.localNav li {
+  height: 30px;
+  line-height: 30px;
+}
+.localNav a {
+  font-size: 20px; /* 18px */
+  color: #000;
+}
+.localNav a:hover {
+  color: #A57D7A;
+}
+.localNav a.current-menu-item {
+  color: #87514E;
+
+}
+.viewMore {
+  color: #692622;
+  float: right;
+}
+
+
+/***** FOOTER STYLES *****/
+footer {
+  clear: both;
+  background: #2C1A16;
+  border-top: 5px solid #F8CA84;
+  color: #fff;
+  overflow: auto;
+  }
+footer a {
+  color: inherit;
+}
+.copywrite {
+  float: left;
+}
+.login {
+  float: right;
+  opacity: 0.15;
+}
+
+
+
+/***** HOMEPAGE STYLES *****/
+#homepageBanner {
+  position: relative;
+  line-height: 100%;
+}
+#homepageBanner h1 {
+  position: absolute;
+  left: -10000px;
+}
+.bannerCTABox {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  /*background: rgba(94,45,15,0.8);*/
+  background: rgba(248,202,132,0.85);
+  padding: 10px;
+  max-width: 250px;
+}
+.bannerCTABox p, .bannerCTABox .viewMore  {
+  color: #2C1A16;
+  font-size: 24px;
+  line-height: 1em;
+  margin: 0;
+}
+.bannerCTABox p {
+  margin: 0 0 10px;
+}
+
+#homepageCTAs {
+  padding-top: 20px;
+  overflow: hidden;
+}
+.CTA {
+  float: left;
+  width: 31.9149%; /* 300px/940px */
+  margin-right: 2.1276%;
+  margin-bottom: -99999px; /* This combined with the padding-bottom below and #homepageCTAs set to overflow hidden makes the CTAs appear to have the same height */
+  padding-bottom: 99999px; 
+  background: #f0e9e8;
+}
+.CTA:last-child {
+  margin-right: 0;
+}
+@media all and (max-width: 800px) {
+  .bannerCTABox {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    max-width: 220px;
+  }
+  .bannerCTABox p, .bannerCTABox .viewMore  {
+    font-size: 20px;
+  }
+
+  .CTA {
+    float: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+    margin-bottom: 20px;
+    background: rgba(240,233,232,1);
+  }
+  .CTA:last-child {
+    margin-bottom: 0;
+  }
+}
+@media all and (max-width: 600px) {
+  .bannerCTABox {
+    bottom: 10px;
+    right: 10px;
+    padding: 5px;
+    max-width: 180px;
+  }
+  .bannerCTABox p, .bannerCTABox .viewMore  {
+    font-size: 16px;
+  }
+  .bannerCTABox p {
+    margin: 0 0 5px;
+  }
+}
+@media all and (max-width: 400px) {
+  .bannerCTABox {
+    max-width: 140px;
+  }
+  .bannerCTABox p, .bannerCTABox .viewMore  {
+    font-size: 14px;
+  }
+}
+
+
+
+/***** HIRING ME PAGE STYLES *****/
+.hiringQuestions {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.hiringQuestions:first-of-type {
+  margin-top: 20px;
+}
+.hiringAnswers {
+  margin: 8px 0 30px;
+}
+
+
+/***** MEDIA PAGE STYLES *****/
+.arrowLink {
+  color: #692622;
+}
+
+
+/***** MUSIC PAGE STYLES *****/
+.musicTitle {
+  margin: 20px 0 5px;
+}
+
+
+/***** PHOTOS PAGE STYLES *****/
+#photoGallery div {
+  display: inline;
+}
+#photoGallery img {
+  max-width: 140px;
+  margin: 0 15px 20px 0;
+  display: inline-block;
+}
+
+@media all and (min-width: 980px) {
+  #photoGallery div:nth-of-type(4n+0) img {
+    margin-right: 0;
+  }
+}
+@media all and (max-width: 400px) {
+  #photoGallery div:nth-of-type(2n) img {
+    margin-right: 0;
+  }
+}
+
+
+/***** VIDEOS PAGE STYLES *****/
+.embed-container {
+  position: relative; 
+  padding-bottom: 56.25%; 
+  height: 0;
+  overflow: hidden;
+  max-width: 100%; 
+  margin-bottom: 20px;
+} 
+.embed-container iframe { 
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+}
+
+
+/***** CONTACT PAGE STYLES *****/
+.dateFeedback{
+  font-style:italic;
+  font-size:70%;
+  font-weight:bold;
+  color:#f00;
+}
+.contact-page form {
+  width: 400px;
+  margin: 40px 0;
+}
+.contact-page form .field,
+.contact-page .success-message {
+  margin: 20px 0;
+}
+.contact-page label {
+  display: block;
+}
+.contact-page input[type="text"],
+.contact-page input[type="email"],
+.contact-page textarea {
+  background: #fff;
+  border: 3px solid #2C1A16;
+  color: #000;
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 0.5em;
+}
+.contact-page input[type="submit"] {
+  margin-bottom: 1em;
+  padding: 10px 20px;
+  background: #2C1A16;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+}
