@@ -2,10 +2,10 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Sidebar from '../components/Sidebar';
 
-const DisclaimerPage = () => (  
+const DisclaimerPage = ({ data }) => (
   <section id="middle">
     <Helmet
-      title="Disclaimer | Myke Gable Music"
+      title={"Disclaimer | " + data.site.siteMetadata.title}
     />
     <article id="content">
       <p><strong>Disclaimer / Privacy Notice </strong></p>
@@ -20,5 +20,15 @@ const DisclaimerPage = () => (
     <Sidebar/>
   </section>
 )
+
+export const query = graphql`
+  query DisclaimerQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 
 export default DisclaimerPage

@@ -2,10 +2,10 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Sidebar from '../../components/Sidebar';
 
-const SuccessPage = () => (
+const SuccessPage = ({ data }) => (
   <section id="middle" className="contact-page">
     <Helmet
-      title="Contact | Myke Gable Music"
+      title={"Contact | " + data.site.siteMetadata.title}
       meta={[
         { name: 'description', content: 'Contact Myke with questions or inquire about hiring him to play at your event.' }
       ]}
@@ -18,5 +18,15 @@ const SuccessPage = () => (
     <Sidebar/>
   </section>
 )
+
+export const query = graphql`
+  query SuccessQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 
 export default SuccessPage

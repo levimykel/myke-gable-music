@@ -5,10 +5,10 @@ import Sidebar from '../components/Sidebar';
 // Resources
 import homeBannerImg from './images/myke-bio.jpg';
 
-const BioPage = () => (
+const BioPage = ({ data }) => (
   <section id="middle">
     <Helmet
-      title="Bio | Myke Gable Music"
+      title={"Bio | " + data.site.siteMetadata.title}
     />
     <article id="content">
       <h1>Bio</h1>
@@ -21,5 +21,15 @@ const BioPage = () => (
     <Sidebar/>
   </section>
 )
+
+export const query = graphql`
+  query BioQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 
 export default BioPage

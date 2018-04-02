@@ -2,10 +2,10 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Sidebar from '../../components/Sidebar';
 
-const ContactPage = () => (
+const ContactPage = ({ data }) => (
   <section id="middle" className="contact-page">
     <Helmet
-      title="Contact | Myke Gable Music"
+      title={"Contact | " + data.site.siteMetadata.title}
       meta={[
         { name: 'description', content: 'Contact Myke with questions or inquire about hiring him to play at your event.' }
       ]}
@@ -40,5 +40,15 @@ const ContactPage = () => (
     <Sidebar/>
   </section>
 )
+
+export const query = graphql`
+  query ContactQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 
 export default ContactPage

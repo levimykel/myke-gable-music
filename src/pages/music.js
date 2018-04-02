@@ -10,10 +10,10 @@ import song04 from './music/04-California-Dreamin.mp3';
 import song05 from './music/05-Have-to-Say-I-Love-You.mp3';
 import song06 from './music/08-Help-Me-Make-it-Through-the-Night.mp3';
 
-const MusicPage = () => (
+const MusicPage = ({ data }) => (
   <section id="middle">
     <Helmet
-      title="Music | Myke Gable Music"
+      title={"Music | " + data.site.siteMetadata.title}
       meta={[
         { name: 'description', content: 'Listen to a few samples of Myke\'s music including the Eagles and Simon & Garfunkel.' }
       ]}
@@ -38,5 +38,15 @@ const MusicPage = () => (
     <Sidebar/>
   </section>
 )
+
+export const query = graphql`
+  query MusicQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 
 export default MusicPage

@@ -2,10 +2,10 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Sidebar from '../components/Sidebar';
 
-const HiringPage = () => (
+const HiringPage = ({ data }) => (
   <section id="middle">
     <Helmet
-      title="Hiring | Myke Gable Music"
+      title={"Hiring | " + data.site.siteMetadata.title}
       meta={[
         { name: 'description', content: 'Everything you need to know when hiring Myke to play music at your event.' }
       ]}
@@ -23,5 +23,15 @@ const HiringPage = () => (
     <Sidebar/>
   </section>
 )
+
+export const query = graphql`
+  query HiringQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 
 export default HiringPage
