@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import Sidebar from '../components/Sidebar';
-import ContactForm from '../components/ContactForm';
+import Sidebar from '../../components/Sidebar';
 
 const SuccessPage = () => (
   <section id="middle" className="contact-page">
