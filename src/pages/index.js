@@ -1,55 +1,161 @@
 import React from 'react';
+import Helmet from 'react-helmet';
+import Prismic from 'prismic-javascript';
+import Cookies from 'js-cookie';
+import {Link as PrismicLink, RichText, Date} from 'prismic-reactjs';
+import PrismicConfig from '../../prismic-config';
 import Link from 'gatsby-link';
 
-// Resources
-import homeBannerImg from './images/myke-gable-banner.jpg';
+class IndexPage extends React.Component {
+  state = {
+    doc: this.props.data.allPrismicDocument.edges[0].node,
+    apiEndpoint: this.props.data.site.siteMetadata.prismicEndpoint,
+  }
 
-const IndexPage = () => (
-  <section id="middle">  
-    <div id="homepageBanner">
-      <h1>Homepage</h1>
-      <Link to="/music">
-        <img src={homeBannerImg} alt="Myke Gable with his guitar"/>
-        <div className="bannerCTABox">
-          <div className="textwidget">
-            <p>Listen to examples of Myke's covers.</p>
-            <p className="viewMore">Music Page →</p>
-          </div>
-        </div>
-      </Link>
-    </div>
-    <aside id="homepageCTAs">
-      <div className="CTA">
-        <h3 className="widgetHeader">About Myke</h3>
-        <div className="widgetContent">
-          <div className="textwidget">
-            <p>Myke Gable is a musician living in Olympia, WA. Myke has over 30 years’ experience performing acoustic guitar-oriented music at clubs, restaurants, hotels, and private parties all over the world.</p>
-            <p><Link className="viewMore" to="/bio">Read More →</Link></p>
-          </div>
-        </div>
-      </div>
+  componentWillMount() {
+    
+    // Check for a preview cookie
+    const previewCookie = Cookies.get(Prismic.previewCookie);
+    
+    // Retrieve preview content if cookie is set
+    if (previewCookie !== undefined) {
+      Prismic.api(PrismicConfig.apiEndpoint).then(api => {
+        api.getSingle('homepage').then(document => {
+          if (document) {
+            this.setState({ doc: document });
+          }
+        });
+      });
+    }
+  }
+ 
+  componentDidUpdate() {
+    // Launch the prismic.io toolbar
+    const apiEndpoint = this.props.data.site.siteMetadata.prismicEndpoint;
+    window.PrismicToolbar.setup(apiEndpoint);
+  }
 
-      <div className="CTA">
-        <h3 className="widgetHeader">Hiring Myke</h3>
-        <div className="widgetContent">
-          <div className="textwidget">
-            <p>Have any questions about hiring Myke? Check the FAQ.</p>
-            <p><Link className="viewMore" to="/hiring">View FAQ Here →</Link></p>
+  createCtaContent(ctas) {
+    return ctas.map((cta, index) => {
+      const ctaKey = 'cta-' + index;
+      const ctaLink = PrismicLink.url(cta.link, PrismicConfig.linkResolver);
+      return (
+        <div className="CTA" key={ctaKey}>
+          <h3 className="widgetHeader">{RichText.asText(cta.cta_heading)}</h3>
+          <div className="widgetContent">
+            <div className="textwidget">
+              <p>{RichText.asText(cta.cta_text)}</p>
+              <p><Link className="viewMore" to={ctaLink}>{RichText.asText(cta.link_text)}</Link></p>
+            </div>
           </div>
         </div>
-      </div>
+      );
+    });
+  }
+  
+  render() {
+    // Set the document object
+    const document = this.state.doc;
+    
+    // Create the CTA content
+    const ctaContent = this.createCtaContent(document.data.ctas);
+    
+    return (
+      <section id="middle">  
+        <div id="homepageBanner">
+          <h1>{RichText.asText(document.data.title)}</h1>
+          <Link to={PrismicLink.url(document.data.hero_link, PrismicConfig.linkResolver)}>
+            <img src={document.data.hero_image.url} alt={RichText.asText(document.data.hero_alt_text)}/>
+            <div className="bannerCTABox">
+              <div className="textwidget">
+                {RichText.render(document.data.hero_text)}
+              </div>
+            </div>
+          </Link>
+        </div>
+        <aside id="homepageCTAs">
+          {ctaContent}
+        </aside>
+      </section>
+    );
+  }
+}
 
-      <div className="CTA">
-        <h3 className="widgetHeader">Contact Myke</h3>
-        <div className="widgetContent">
-          <div className="textwidget">
-            <p>For booking or more information, feel free to send Myke a message.</p>
-            <p><Link className="viewMore" to="/contact">Contact Page →</Link></p>
-          </div>
-        </div>
-      </div>
-    </aside>
-  </section>
-)
+export const query = graphql`
+  query IndexPageQuery {
+    allPrismicDocument(filter: { type: { eq: "homepage" } }) {
+      edges {
+        node {
+          id
+          uid
+          type
+          data {
+            title {
+              type
+              text
+            }
+            hero_image {
+              url
+            }
+            hero_alt_text {
+              type
+              text
+            }
+            hero_text {
+              type
+              text
+              spans {
+                start
+                end
+                type
+                data {
+                  label
+                }
+              }
+            }
+            hero_link {
+              id
+              type
+              slug
+              lang
+              uid
+              link_type
+              isBroken
+            }
+            ctas {
+              cta_heading {
+                type
+                text
+              }
+              cta_text {
+                type
+                text
+              }
+              link_text {
+                type
+                text
+              }
+              link {
+                id
+                type
+                slug
+                lang
+                uid
+                link_type
+                isBroken
+              }
+            }
+          }
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        title
+        prismicEndpoint
+      }
+    }
+  }
+`
 
 export default IndexPage

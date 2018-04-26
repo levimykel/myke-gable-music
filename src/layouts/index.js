@@ -18,15 +18,22 @@ class TemplateWrapper extends React.Component {
   }
   
   render() {
+    const prismicScript = {};
     return(
       <div>
         <Helmet
-          title="Myke Gable Music"
+          title={this.props.data.site.siteMetadata.title}
           meta={[
             { name: 'description', content: 'Myke Gable is a musician living in Olympia, WA with over 30 years of experience performing acoustic guitar-oriented music at clubs, restaurants, hotels, and private parties.' }
           ]}
         >
           <link rel="icon" type="image/png" href={favicon}/>
+          <script>{`
+            window.prismic = {
+              endpoint: "${this.props.data.site.siteMetadata.prismicEndpoint}"
+            };`}
+          </script>
+          <script type="text/javascript" src="//static.cdn.prismic.io/prismic.min.js"></script>
         </Helmet>
         <Header />
         {this.props.children()}
@@ -35,6 +42,17 @@ class TemplateWrapper extends React.Component {
     )
   }
 }
+
+export const query = graphql`
+  query TemplateWrapperQuery {
+    site {
+      siteMetadata {
+        title
+        prismicEndpoint
+      }
+    }
+  }
+`
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,

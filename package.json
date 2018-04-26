@@ -4,11 +4,16 @@
   "version": "1.0.0",
   "author": "Levi Gable <levimykel@gmail.com>",
   "dependencies": {
-    "gatsby": "^1.9.241",
+    "gatsby": "^1.9.255",
     "gatsby-cli": "^1.1.49",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-react-helmet": "^2.0.8",
+    "gatsby-source-filesystem": "^1.5.27",
+    "gatsby-source-prismic": "^0.1.4",
     "jquery": "^3.3.1",
+    "js-cookie": "^2.2.0",
+    "prismic-javascript": "^1.5.0-beta.2",
+    "prismic-reactjs": "^0.3.1",
     "react-helmet": "^5.2.0"
   },
   "keywords": [
