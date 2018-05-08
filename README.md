@@ -1,26 +1,49 @@
-# gatsby-starter-default
-The default Gatsby starter.
+# Myke Gable Music Website
+This is the personal website for Myke Gable Music. 
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+## Getting Started
 
-## Install
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-Make sure that you have the Gatsby CLI program installed:
-```sh
-npm install --global gatsby-cli
+### Prerequisites
+
+To get this project launched you will need to have [Node.js](https://nodejs.org/en/) installed on your local machine.
+
+### Installing
+
+Launch the terminal (command prompt or similar on Windows), navigate to the project folder, and run the following command.
+
+```
+npm install
 ```
 
-And run from your CLI:
-```sh
-gatsby new gatsby-example-site
+Once installed, you can launch the local development server by running the following command.
+
+```
+gatsby develop
 ```
 
-Then you can run it by:
-```sh
-cd gatsby-example-site
-npm run develop
+You will then be able to open your browser to http://localhost:8000/ to see the project up and running. 
+
+## Deployment
+
+You can deploy this project live to a static website host such as [Netlify](https://www.netlify.com/).
+
+Run the command to launch the production version of the website. 
+
+```
+gatsby build
 ```
 
-## Deploy
+## Built With
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+* [Gatsby](https://www.gatsbyjs.org/) - Static site generator 
+* [Prismic](https://prismic.io/) - Headless content management system
+
+## Authors
+
+* **Levi Gable** - *Initial work* - [levimykel](https://github.com/levimykel)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
