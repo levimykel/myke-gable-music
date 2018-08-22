@@ -5,6 +5,16 @@ import Cookies from 'js-cookie';
 import {Link as PrismicLink, RichText, Date} from 'prismic-reactjs';
 import PrismicConfig from '../../../prismic-config';
 import Sidebar from '../../components/Sidebar';
+import { navigateTo } from "gatsby-link";
+import ReCAPTCHA from "react-google-recaptcha";
+
+const RECAPTCHA_KEY = '6LcZzA0TAAAAAD1kWqxnMHHsSIGl7PGWfdUVivkn';
+
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
 
 class ContactPage extends React.Component {
   state = {
@@ -16,8 +26,6 @@ class ContactPage extends React.Component {
     
     // Check for a preview cookie
     const previewCookie = Cookies.get(Prismic.previewCookie);
-
-    
     
     // Retrieve preview content if cookie is set
     if (previewCookie !== undefined) {
@@ -66,6 +74,29 @@ class ContactPage extends React.Component {
     }
   }
   
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  
+  handleRecaptcha = value => {
+    this.setState({ "g-recaptcha-response": value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...this.state
+      })
+    })
+      .then(() => navigateTo(form.getAttribute("action")))
+      .catch(error => alert(error));
+  };
+  
   render() {
     // Set the document object
     const document = this.state.doc;
@@ -79,26 +110,42 @@ class ContactPage extends React.Component {
         <article id="content">
           <h1>{RichText.asText(document.data.title)}</h1>
           <p>{RichText.asText(document.data.text)}</p>
-          <form name="Contact" method="post" action="/contact/success" data-netlify="true" data-netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="Contact" />
+          <form
+            name="Contact"
+            method="post"
+            action="/contact/success"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"  
+            data-netlify-recaptcha="true"
+            onSubmit={this.handleSubmit}
+          >
+            <noscript>
+              <p>This form won’t work with Javascript disabled</p>
+            </noscript>
+            <input type="hidden" name="form-name" value="Contact" onChange={this.handleChange}/>
             <p style={{display:'none'}}>
               <label>
                 Don’t fill this out if you're human: 
-                <input name="bot-field"/>
+                <input name="bot-field" onChange={this.handleChange}/>
               </label>
             </p>
             <div className="field">
               <label htmlFor="name">Name</label>
-              <input type="text" name="name" id="name" />
+              <input type="text" name="name" id="name" onChange={this.handleChange}/>
             </div>
             <div className="field">
               <label htmlFor="email">Email</label>
-              <input type="text" name="email" id="email" />
+              <input type="text" name="email" id="email" onChange={this.handleChange}/>
             </div>
             <div className="field">
               <label htmlFor="message">Message</label>
-              <textarea name="message" id="message" rows="6"></textarea>
+              <textarea name="message" id="message" rows="6" onChange={this.handleChange}></textarea>
             </div>
+            <ReCAPTCHA
+              ref="recaptcha"
+              sitekey={RECAPTCHA_KEY}
+              onChange={this.handleRecaptcha}
+            />
             <input type="submit" value={RichText.asText(document.data.button_text)}/>
           </form>
         </article>
